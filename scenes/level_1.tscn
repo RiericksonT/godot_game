@@ -1,0 +1,80 @@
+[gd_scene load_steps=9 format=3 uid="uid://bse877xv53cb"]
+
+[ext_resource type="Script" path="res://script/level_1.gd" id="1_j05cp"]
+[ext_resource type="Texture2D" uid="uid://bqc7wd0c3bguf" path="res://assets/speedy_saucer_assets/darkPurple.png" id="1_k5jtm"]
+[ext_resource type="PackedScene" uid="uid://bwtn4vocfbh1h" path="res://scenes/player.tscn" id="2_1im6p"]
+[ext_resource type="PackedScene" uid="uid://dgwqisidokfwf" path="res://scenes/circuit.tscn" id="3_c7457"]
+[ext_resource type="PackedScene" uid="uid://c8a320nr5oa5y" path="res://scenes/win.tscn" id="5_su2j6"]
+[ext_resource type="PackedScene" uid="uid://bfdcirsih0wfe" path="res://scenes/win_area.tscn" id="6_1btw8"]
+
+[sub_resource type="FontVariation" id="FontVariation_uaawh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6i6fj"]
+font = SubResource("FontVariation_uaawh")
+shadow_color = Color(0, 0, 0, 0.513726)
+
+[node name="Level1" type="Node2D"]
+script = ExtResource("1_j05cp")
+
+[node name="Graphics" type="Node" parent="."]
+
+[node name="LabelStart" type="Label" parent="Graphics"]
+offset_left = 15.0
+offset_top = 363.0
+offset_right = 63.0
+offset_bottom = 389.0
+text = "START
+"
+label_settings = SubResource("LabelSettings_6i6fj")
+
+[node name="LabelEnd" type="Label" parent="Graphics"]
+offset_left = 1060.0
+offset_top = 13.0
+offset_right = 1108.0
+offset_bottom = 65.0
+text = "END
+
+"
+label_settings = SubResource("LabelSettings_6i6fj")
+
+[node name="LabelRules" type="Label" parent="Graphics"]
+offset_left = -344.0
+offset_top = 338.0
+offset_right = -7.0
+offset_bottom = 468.0
+text = "Game rules:
+- Go from Start to end
+- Use arrows or WASD to move your player
+- Don't get away from way, or you'll teleported to starting point"
+label_settings = SubResource("LabelSettings_6i6fj")
+autowrap_mode = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Graphics"]
+layer = -10
+
+[node name="Background" type="TextureRect" parent="Graphics/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_k5jtm")
+stretch_mode = 1
+
+[node name="Win" parent="Graphics" instance=ExtResource("5_su2j6")]
+visible = false
+offset_left = 464.0
+offset_top = -276.0
+offset_right = 504.0
+offset_bottom = -236.0
+
+[node name="Circuit" parent="." instance=ExtResource("3_c7457")]
+
+[node name="Player" parent="." instance=ExtResource("2_1im6p")]
+position = Vector2(33, 419)
+
+[node name="WinArea" parent="." instance=ExtResource("6_1btw8")]
+position = Vector2(1029, 0)
+
+[connection signal="body_exited" from="Circuit" to="." method="_on_circuit_body_exited"]
+[connection signal="body_entered" from="WinArea" to="." method="_on_win_area_body_entered"]
