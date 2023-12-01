@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bse877xv53cb"]
+[gd_scene load_steps=10 format=3 uid="uid://bse877xv53cb"]
 
 [ext_resource type="Script" path="res://script/level_1.gd" id="1_j05cp"]
 [ext_resource type="Texture2D" uid="uid://bqc7wd0c3bguf" path="res://assets/speedy_saucer_assets/darkPurple.png" id="1_k5jtm"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dgwqisidokfwf" path="res://scenes/circuit.tscn" id="3_c7457"]
 [ext_resource type="PackedScene" uid="uid://c8a320nr5oa5y" path="res://scenes/win.tscn" id="5_su2j6"]
 [ext_resource type="PackedScene" uid="uid://bfdcirsih0wfe" path="res://scenes/win_area.tscn" id="6_1btw8"]
+[ext_resource type="AudioStream" uid="uid://y7p6idsdqclk" path="res://assets/speedy_saucer_assets/415_full_great-player_0136_preview.mp3" id="7_5wygl"]
 
 [sub_resource type="FontVariation" id="FontVariation_uaawh"]
 
@@ -75,6 +76,12 @@ position = Vector2(33, 419)
 
 [node name="WinArea" parent="." instance=ExtResource("6_1btw8")]
 position = Vector2(1029, 0)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_5wygl")
+volume_db = -12.142
+autoplay = true
+mix_target = 1
 
 [connection signal="body_exited" from="Circuit" to="." method="_on_circuit_body_exited"]
 [connection signal="body_entered" from="WinArea" to="." method="_on_win_area_body_entered"]

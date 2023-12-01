@@ -1,5 +1,7 @@
 extends Node2D
 
+@onready var bg_music = $AudioStreamPlayer
+@onready var win_music = $Graphics/Win/AudioStreamPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,3 +23,5 @@ func show_win_screen(flag: bool):
 
 func _on_win_area_body_entered(body):
 	show_win_screen(true)
+	bg_music.stop()
+	win_music.play()

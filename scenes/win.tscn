@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8a320nr5oa5y"]
+[gd_scene load_steps=5 format=3 uid="uid://c8a320nr5oa5y"]
 
 [ext_resource type="Texture2D" uid="uid://bqc7wd0c3bguf" path="res://assets/speedy_saucer_assets/darkPurple.png" id="1_cqeio"]
+[ext_resource type="AudioStream" uid="uid://m0bxv60io6ll" path="res://assets/speedy_saucer_assets/573_short1_jamaica-8bit_0016_preview.mp3" id="2_a87ow"]
 
 [sub_resource type="GDScript" id="GDScript_t4jqq"]
 script/source = "extends Control
@@ -47,5 +48,9 @@ offset_top = 378.0
 offset_right = 620.0
 offset_bottom = 409.0
 text = "BACK"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_a87ow")
+volume_db = -12.142
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
